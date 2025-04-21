@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/remix-stack.iml" filepath="$PROJECT_DIR$/.idea/remix-stack.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/mix-stack.iml" filepath="$PROJECT_DIR$/.idea/mix-stack.iml" />
     </modules>
   </component>
 </project>

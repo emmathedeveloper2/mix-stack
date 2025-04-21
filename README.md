@@ -1,40 +1,69 @@
-# Welcome to Remix!
+# MixStack 🧃
+**The modern auth starter template built with Remix, TailwindCSS, Drizzle ORM, and PostgreSQL.**
 
-- 📖 [Remix docs](https://remix.run/docs)
+## 🧩 Stack
 
-## Development
+- **[Remix](https://remix.run/)** – Full-stack React framework focused on fast and dynamic web apps.
+- **[Tailwind CSS](https://tailwindcss.com/)** – Utility-first CSS for building beautiful UIs fast.
+- **[Drizzle ORM](https://orm.drizzle.team/)** – Type-safe SQL ORM for modern TypeScript projects.
+- **[PostgreSQL](https://www.postgresql.org/)** – Powerful, open-source relational database.
 
-Run the dev server:
+## ✨ Features
 
-```shellscript
-npm run dev
+- 🔐 Auth built-in (sign up, login, logout, sessions)
+- 🌈 Fully styled with TailwindCSS
+- 🔌 Drizzle ORM setup with migrations
+- 🗃️ PostgreSQL schema with users & sessions
+- 🧪 Typesafe from DB to UI
+- 📦 Ready-to-deploy with environment configuration
+- ⚡ Blazing fast dev experience with [Bun](https://bun.sh)
+- 🛠️ Dev-friendly DX with linting, formatting, and hot reload
+
+## 🚀 Getting Started
+
+### 1. Clone the Repo
+
+```bash
+npx degit emmathedeveloper2/mixstack my-app
+cd my-app
 ```
 
-## Deployment
+## Install dependencies
 
-First, build your app for production:
-
-```sh
-npm run build
+```bash
+bun install
 ```
 
-Then run the app in production mode:
+## Set Up Your Database
+Create a .env file based on .env.example, Then run the migrations:
 
-```sh
-npm start
+```bash
+bun run db:push
 ```
 
-Now you'll need to pick a host to deploy it to.
+## Project Structure
 
-### DIY
+```bash
+.
+├── app/                # Remix app code
+│   ├── .server/         # Route modules
+│   ├── database/         # Schemas and database
+│   └── routes/          # Helpers (auth, sessions, etc.)
+├── drizzle.config.ts           # Drizzle config
+├── public/             # Static assets
+├── .env                # Environment variables
+├── package.json        # Package json
+├── vite.config.ts     # Vite configuration
+└── tailwind.config.ts  # Tailwind config
+```
 
-If you're familiar with deploying Node applications, the built-in Remix app server is production-ready.
+## 🔐 Auth Overview
+- Email/password auth
 
-Make sure to deploy the output of `npm run build`
+- Secure session handling
 
-- `build/server`
-- `build/client`
+- Built with Remix loaders/actions
 
-## Styling
+- Session cookies stored via httpOnly secure cookies
 
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever css framework you prefer. See the [Vite docs on css](https://vitejs.dev/guide/features.html#css) for more information.
+Built with 💛 by emmathedeveloper
