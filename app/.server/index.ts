@@ -7,7 +7,7 @@ import {authCookie} from "~/.server/config/cookies.config";
 import {safeTry} from "~/utils";
 import {sendVerificationEmail} from "~/.server/config/email.config";
 import {ERRORS} from "~/types";
-import bcrypt from "bcryptjs";
+import bcrypt, {genSalt, hash} from "bcryptjs";
 
 export const generateSessionToken = () => {
     let code = ""
@@ -149,7 +149,11 @@ export const signUpWithEmailAndPassword = async (username: string , email: strin
 
         if(existingUser) throw new Error(ERRORS.EMAIL_TAKEN)
 
-        const [ user ] = await db.insert(usersTable).values({ username, email , password , verified: false }).returning()
+        const salt = await genSalt(10)
+
+        const hashed = await hash(password , salt)
+
+        const [ user ] = await db.insert(usersTable).values({ username, email , password: hashed , verified: false }).returning()
 
         if(!user) throw new Error(ERRORS.USER_CREATION_ERROR)
 

@@ -1,5 +1,5 @@
 import { ActionFunctionArgs } from "@remix-run/node";
-import {Form, useActionData, useNavigation} from "@remix-run/react";
+import {Form, Link, useActionData, useNavigation} from "@remix-run/react";
 import {LoaderIcon} from "lucide-react";
 import {signUpWithEmailAndPassword} from "~/.server";
 import {redirect} from "@remix-run/router";
@@ -11,9 +11,12 @@ export async function action({ request } : ActionFunctionArgs){
     //Parse data from request
     const { username , email, password }: any = Object.fromEntries(await request.formData())
 
-    const [ success , data ] = await safeTry(signUpWithEmailAndPassword(username , email, password))
+    const [ success , data , message ] = await safeTry(signUpWithEmailAndPassword(username , email, password))
 
-    if(!success) return redirect('/error')
+    if(!success) return {
+        success,
+        message
+    }
 
     return redirect('/request-code' , {
         headers: {
@@ -22,7 +25,7 @@ export async function action({ request } : ActionFunctionArgs){
     })
 }
 
-export default function SignInPage(){
+export default function SignUpPage(){
 
     const { state } = useNavigation()
 
@@ -37,6 +40,15 @@ export default function SignInPage(){
                     actionData && !actionData.success &&
                     <p className={"text-center"}>{actionData.message}</p>
                 }
+
+                <input
+                    required
+                    type="text"
+                    name="username"
+                    placeholder={"Your Username"}
+                    className={"w-full p-2"}
+                />
+
                 <input
                     required
                     type="email"
@@ -58,6 +70,13 @@ export default function SignInPage(){
                 >
                     {isBusy ? <LoaderIcon className={"animate-spin"}/> : "SIGN UP"}
                 </button>
+
+                <span className={"flex gap-1"}>
+                    Already have an account?
+                    <Link to={'/signin'} className={"underline"}>
+                        Sign In
+                    </Link>
+                </span>
             </Form>
         </div>
     )

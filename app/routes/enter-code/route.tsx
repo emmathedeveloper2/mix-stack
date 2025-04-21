@@ -1,4 +1,4 @@
-import {Form, useActionData, useLoaderData, useNavigation} from "@remix-run/react";
+import {Form, Link, useActionData, useLoaderData, useNavigation} from "@remix-run/react";
 import {LoaderIcon} from "lucide-react";
 import {LoaderFunctionArgs , ActionFunctionArgs, redirect} from "@remix-run/router";
 import {getCurrentUser, verifyCode} from "~/.server";
@@ -74,7 +74,7 @@ export default function CodePage(){
                     <p className={"text-center"}>{actionData.message}</p>
                 }
 
-                <p className={"text-center"}>A 6 digit code has been sent to {formatEmail(email)}</p>
+                <p className={"text-center"}>A 6 digit code was sent to {formatEmail(email)}</p>
 
                 <input
                     required
@@ -90,6 +90,14 @@ export default function CodePage(){
                 >
                     {isBusy ? <LoaderIcon className={"animate-spin"}/> : "VERIFY ACCOUNT"}
                 </button>
+
+
+                <span className={"flex gap-1"}>
+                    Didn't receive code?
+                    <Link to={'/request-code'} className={"underline"}>
+                        Resend Code
+                    </Link>
+                </span>
             </Form>
         </div>
     )

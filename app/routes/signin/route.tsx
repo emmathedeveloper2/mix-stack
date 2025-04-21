@@ -1,4 +1,4 @@
-import {Form, useActionData, useNavigation} from "@remix-run/react";
+import {Form, Link, useActionData, useNavigation} from "@remix-run/react";
 import {LoaderIcon} from "lucide-react";
 import {ActionFunctionArgs, redirect} from "@remix-run/router";
 import {authCookie} from "~/.server/config/cookies.config";
@@ -35,6 +35,7 @@ export default function SignInPage(){
                     actionData && !actionData.success &&
                     <p className={"text-center"}>{actionData.message}</p>
                 }
+
                 <input
                     required
                     type="email"
@@ -56,6 +57,13 @@ export default function SignInPage(){
                 >
                     {isBusy ? <LoaderIcon className={"animate-spin"}/> : "SIGN IN"}
                 </button>
+
+                <span className={"flex gap-1"}>
+                    Don't have an account?
+                    <Link to={'/signup'} className={"underline"}>
+                        Sign Up
+                    </Link>
+                </span>
             </Form>
         </div>
     )

@@ -15,7 +15,7 @@ export async function loader({ request } : LoaderFunctionArgs){
         }
     })
 
-    if(!user.verified) redirect('/code')
+    if(!user.verified) return redirect('/enter-code')
 
     return { user }
 }
