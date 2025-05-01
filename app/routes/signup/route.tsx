@@ -11,16 +11,16 @@ export async function action({ request } : ActionFunctionArgs){
     //Parse data from request
     const { username , email, password }: any = Object.fromEntries(await request.formData())
 
-    const [ success , data , message ] = await safeTry(signUpWithEmailAndPassword(username , email, password))
+    const [ success , session , message ] = await safeTry(signUpWithEmailAndPassword(username , email, password))
 
     if(!success) return {
         success,
         message
     }
 
-    return redirect('/request-code' , {
+    return redirect('/choose-verification-method' , {
         headers: {
-            'Set-Cookie': await authCookie.serialize(data)
+            'Set-Cookie': await authCookie.serialize(session)
         }
     })
 }

@@ -6,8 +6,8 @@ import {safeTry} from "~/utils";
 
 export const meta: MetaFunction = () => {
   return [
-    { title: "Remix Stack" },
-    { name: "description", content: "Welcome to Remix Stack" },
+    { title: "MixStack" },
+    { name: "description", content: "Welcome to MixStack" },
   ];
 };
 
