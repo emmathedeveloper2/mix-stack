@@ -3,7 +3,7 @@
 
 ## 🧩 Stack
 
-- **[Remix](https://remix.run/)** – Full-stack React framework focused on fast and dynamic web apps.
+- **[React Router](https://reactrouter.com/)** – A complete routing library for React.
 - **[Tailwind CSS](https://tailwindcss.com/)** – Utility-first CSS for building beautiful UIs fast.
 - **[Drizzle ORM](https://orm.drizzle.team/)** – Type-safe SQL ORM for modern TypeScript projects.
 - **[PostgreSQL](https://www.postgresql.org/)** – Powerful, open-source relational database.
@@ -62,7 +62,7 @@ bun run db:push
 
 - Secure session handling
 
-- Built with Remix loaders/actions
+- Built with React Router loaders/actions
 
 - Session cookies stored via httpOnly secure cookies
 
