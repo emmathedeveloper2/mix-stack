@@ -1,4 +1,4 @@
-import {createCookie} from "@remix-run/node";
+import { createCookie } from "react-router";
 import {COOKIE_SECRET} from "~/.server/config/env.config";
 
 

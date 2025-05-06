@@ -1,8 +1,8 @@
 import {safeTry} from "~/utils";
 import {getCurrentUser} from "~/.server";
-import {LoaderFunctionArgs, redirect} from "@remix-run/router";
+import { LoaderFunctionArgs, redirect } from "react-router";
 import {authCookie} from "~/.server/config/cookies.config";
-import {Link, useLoaderData} from "@remix-run/react";
+import { Link, useLoaderData } from "react-router";
 
 
 export async function loader({ request } : LoaderFunctionArgs){

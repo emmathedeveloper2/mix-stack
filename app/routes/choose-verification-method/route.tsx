@@ -1,8 +1,8 @@
-import {Link, useNavigation} from "@remix-run/react";
+import { Link, useNavigation } from "react-router";
 import {AsteriskSquareIcon, ChevronRightIcon, Link2Icon, LoaderIcon} from "lucide-react";
 import {safeTry} from "~/utils";
 import {getCurrentSession, getCurrentUser} from "~/.server";
-import {LoaderFunctionArgs, redirect} from "@remix-run/router";
+import { LoaderFunctionArgs, redirect } from "react-router";
 import {authCookie} from "~/.server/config/cookies.config";
 
 export async function loader({request}: LoaderFunctionArgs) {

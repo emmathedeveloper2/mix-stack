@@ -1,4 +1,4 @@
-import {redirect} from "@remix-run/router";
+import { redirect } from "react-router";
 import {authCookie} from "~/.server/config/cookies.config";
 
 

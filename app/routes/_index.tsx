@@ -1,6 +1,6 @@
-import type { MetaFunction } from "@remix-run/node";
-import {Link, useLoaderData} from "@remix-run/react";
-import {LoaderFunctionArgs} from "@remix-run/router";
+import type { MetaFunction } from "react-router";
+import { Link, useLoaderData } from "react-router";
+import { LoaderFunctionArgs } from "react-router";
 import {getCurrentUser} from "~/.server";
 import {safeTry} from "~/utils";
 

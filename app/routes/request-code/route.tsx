@@ -1,4 +1,4 @@
-import {LoaderFunctionArgs, redirect} from "@remix-run/router";
+import { LoaderFunctionArgs, redirect } from "react-router";
 import {getCurrentSession, getCurrentUser, sendCode} from "~/.server";
 import {safeTry} from "~/utils";
 import {authCookie} from "~/.server/config/cookies.config";

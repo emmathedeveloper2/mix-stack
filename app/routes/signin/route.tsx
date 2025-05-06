@@ -1,6 +1,6 @@
-import {Form, Link, useActionData, useNavigation} from "@remix-run/react";
+import { Form, Link, useActionData, useNavigation } from "react-router";
 import {LoaderIcon} from "lucide-react";
-import {ActionFunctionArgs, redirect} from "@remix-run/router";
+import { ActionFunctionArgs, redirect } from "react-router";
 import {authCookie} from "~/.server/config/cookies.config";
 import {safeTry} from "~/utils";
 import {signInWithEmailAndPassword} from "~/.server";
