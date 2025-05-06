@@ -1,5 +1,5 @@
 # MixStack 🧃
-**The modern auth starter template built with Remix, TailwindCSS, Drizzle ORM, and PostgreSQL.**
+**The modern auth starter template built with React Router v7, TailwindCSS, Drizzle ORM, and PostgreSQL.**
 
 ## 🧩 Stack
 
