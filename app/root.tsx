@@ -2,6 +2,7 @@ import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
 import type { LinksFunction } from "react-router";
 
 import "./tailwind.css";
+import { Route } from "./+types/root";
 
 export const links: LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -14,7 +15,29 @@ export const links: LinksFunction = () => [
     rel: "stylesheet",
     href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
   },
+  {
+    rel: "icon",
+    type: "image/png",
+    href: "./logo.png"
+  }
 ];
+
+export function meta({}: Route.MetaArgs) {
+  return [
+    { title: "MixStack" },
+    { name: "description", content: "A mordern Auth Template" },
+    { property: "og:url", content: "https://example.com" },
+    { property: "og:type", content: "website" },
+    { property: "og:title", content: "MixStack" },
+    { property: "og:description", content: "A mordern Auth Template" },
+    { property: "og:image", content: "https://example.com/opengraph.png" },
+    { property: "twitter:card", content: "summary_large_image" },
+    { property: "twitter:title", content: "MixStack" },
+    { property: "twitter:description", content: "A mordern Auth Template" },
+    { property: "twitter:image", content: "https://example.com/opengraph.png" },
+    { property: "twitter:site", content: "@example" },
+  ];
+}
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
