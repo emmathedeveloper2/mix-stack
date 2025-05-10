@@ -10,3 +10,9 @@ body {
     color-scheme: dark;
   }
 }
+
+@layer base {
+  button:disabled {
+    opacity: .5;
+  }
+}

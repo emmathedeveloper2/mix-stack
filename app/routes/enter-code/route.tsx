@@ -92,12 +92,14 @@ export default function CodePage(){
                 </button>
 
 
-                <span className={"flex gap-1"}>
-                    Didn't receive code?
-                    <Link to={'/request-code'} className={"underline"}>
-                        Resend Code
-                    </Link>
-                </span>
+                {!isBusy &&
+                    <span className={"flex gap-1"}>
+                        Didn't receive code?
+                        <Link to={'/request-code'} className={"underline"}>
+                            Resend Code
+                        </Link>
+                    </span>
+                }
             </Form>
         </div>
     )
