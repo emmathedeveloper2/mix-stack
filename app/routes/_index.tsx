@@ -1,17 +1,16 @@
-import type { MetaFunction } from "react-router";
-import { Link, useLoaderData } from "react-router";
-import { LoaderFunctionArgs } from "react-router";
+import { Link } from "react-router";
 import {getCurrentUser} from "~/.server";
 import {safeTry} from "~/utils";
+import { Route } from "./+types/_index";
 
-export const meta: MetaFunction = () => {
+export const meta: Route.MetaFunction = () => {
   return [
     { title: "MixStack" },
     { name: "description", content: "Welcome to MixStack" },
   ];
 };
 
-export async function loader({ request } : LoaderFunctionArgs){
+export async function loader({ request } : Route.LoaderArgs){
 
   const [success , user] = await safeTry(getCurrentUser(request.headers))
 
@@ -22,9 +21,9 @@ export async function loader({ request } : LoaderFunctionArgs){
   }
 }
 
-export default function Index() {
+export default function Index({ loaderData } : Route.ComponentProps) {
 
-  const { user } = useLoaderData<typeof loader>()
+  const { user } = loaderData
 
   return (
     <div className={"size-full flex flex-col items-center justify-center p-2"}>

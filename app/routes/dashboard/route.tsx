@@ -1,11 +1,11 @@
 import {safeTry} from "~/utils";
 import {getCurrentUser} from "~/.server";
-import { LoaderFunctionArgs, redirect } from "react-router";
+import { redirect } from "react-router";
 import {authCookie} from "~/.server/config/cookies.config";
 import { Link, useLoaderData } from "react-router";
+import { Route } from "./+types/route";
 
-
-export async function loader({ request } : LoaderFunctionArgs){
+export async function loader({ request } : Route.LoaderArgs){
 
     const [ success , user ] = await safeTry(getCurrentUser(request.headers))
 
@@ -20,9 +20,9 @@ export async function loader({ request } : LoaderFunctionArgs){
     return { user }
 }
 
-export default function DashboardPage(){
+export default function DashboardPage({ loaderData } : Route.ComponentProps){
 
-    const { user } = useLoaderData<typeof loader>()
+    const { user } = loaderData
 
     return (
         <div className={"size-full flex flex-col items-center justify-center p-2"}>

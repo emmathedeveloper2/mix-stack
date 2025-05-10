@@ -1,12 +1,12 @@
-import { ActionFunctionArgs } from "react-router";
-import { Form, Link, useActionData, useNavigation } from "react-router";
+import { Form, Link, useNavigation } from "react-router";
 import {LoaderIcon} from "lucide-react";
 import {signUpWithEmailAndPassword} from "~/.server";
 import { redirect } from "react-router";
 import {authCookie} from "~/.server/config/cookies.config";
 import {safeTry} from "~/utils";
+import { Route } from "./+types/route";
 
-export async function action({ request } : ActionFunctionArgs){
+export async function action({ request } : Route.ActionArgs){
 
     //Parse data from request
     const { username , email, password }: any = Object.fromEntries(await request.formData())
@@ -25,13 +25,11 @@ export async function action({ request } : ActionFunctionArgs){
     })
 }
 
-export default function SignUpPage(){
+export default function SignUpPage({ actionData } : Route.ComponentProps){
 
     const { state } = useNavigation()
 
     const isBusy = state == 'loading' || state == 'submitting'
-
-    const actionData = useActionData<typeof action>()
 
     return (
         <div className={"size-full flex flex-col items-center justify-center p-2"}>

@@ -1,17 +1,18 @@
-import { Form, Link, useActionData, useLoaderData, useNavigation } from "react-router";
+import {Form, Link, useNavigation} from "react-router";
 import {LoaderIcon} from "lucide-react";
-import { LoaderFunctionArgs, ActionFunctionArgs, redirect } from "react-router";
+import {redirect} from "react-router";
 import {getCurrentUser, verifyCode} from "~/.server";
 import {authCookie} from "~/.server/config/cookies.config";
 import {safeTry} from "~/utils";
+import {Route} from "./+types/route";
 
-export async function loader({ request } : LoaderFunctionArgs){
+export async function loader({request}: Route.LoaderArgs) {
 
-    const [ success , user ] = await safeTry(getCurrentUser(request.headers))
+    const [success, user] = await safeTry(getCurrentUser(request.headers))
 
-    if(!success) return redirect('/signup' , {
+    if (!success) return redirect('/signup', {
         headers: {
-            'Set-Cookie': await authCookie.serialize('' , { maxAge: 1 })
+            'Set-Cookie': await authCookie.serialize('', {maxAge: 1})
         }
     })
 
@@ -20,51 +21,44 @@ export async function loader({ request } : LoaderFunctionArgs){
     }
 }
 
-export async function action({ request } : ActionFunctionArgs){
+export async function action({request}: Route.ActionArgs) {
 
-    const [ userFound , _ , message ] = await safeTry(getCurrentUser(request.headers))
+    const [userFound, _, message] = await safeTry(getCurrentUser(request.headers))
 
-    if(!userFound) return {
+    if (!userFound) return {
         success: false,
         message,
     }
 
-    const { code } = Object.fromEntries(await request.formData())
+    const {code} = Object.fromEntries(await request.formData())
 
-    const [ success , newSession , msg ] = await safeTry(verifyCode(request.headers , code as any))
+    const [success, newSession, msg] = await safeTry(verifyCode(request.headers, code as any))
 
-    if(!success) return {
+    if (!success) return {
         success,
-        message: msg.replace("jwt" , "code")
+        message: msg.replace("jwt", "code")
     }
 
-    return redirect('/dashboard' , {
+    return redirect('/dashboard', {
         headers: {
             'Set-Cookie': await authCookie.serialize(newSession)
         }
     })
 }
 
-export default function CodePage(){
+export default function CodePage({actionData , loaderData}: Route.ComponentProps) {
 
-    const actionData = useActionData<typeof action>()
+    const {email} = loaderData
 
-    const { email } = useLoaderData<typeof loader>()
-
-    const { state } = useNavigation()
+    const {state} = useNavigation()
 
     const isBusy = state == 'loading' || state == 'submitting'
 
-    const formatEmail = (text: string) => {
+    const formatEmail = (text: string) => text.split("").reduce((prev: string, char, idx) => {
+        prev += idx > 0 && idx < text.indexOf("@") ? '*' : char
 
-        let formatted = text.split("").reduce((prev: string , char , idx) => {
-            prev += idx > 0 && idx < text.indexOf("@") ? '*' : char
-
-            return prev
-        } , "")
-
-        return formatted
-    }
+        return prev
+    }, "")
 
     return (
         <div className={"size-full flex flex-col items-center justify-center p-2"}>

@@ -1,10 +1,10 @@
-import { LoaderFunctionArgs, redirect } from "react-router";
+import { redirect } from "react-router";
 import {getCurrentSession, getCurrentUser, sendCode} from "~/.server";
 import {safeTry} from "~/utils";
 import {authCookie} from "~/.server/config/cookies.config";
+import { Route } from "./+types/route";
 
-
-export const loader = async ({ request } : LoaderFunctionArgs) => {
+export const loader = async ({ request } : Route.LoaderArgs) => {
 
     const [ sessionSuccess , session ] = await safeTry(getCurrentSession(request.headers))
 
