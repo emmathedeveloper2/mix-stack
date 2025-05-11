@@ -16,7 +16,7 @@ const transporter = createTransport({
 const sendVerificationEmail = async (email: string , code: string) => {
 
     const mailOptions = {
-        from: SMTP_PASSWORD,
+        from: SMTP_USERNAME,
         to: email,
         subject: APP_NAME + ' - Verify Your Email',
         html: verificationEmailTemplate({ appName: APP_NAME! , code })
